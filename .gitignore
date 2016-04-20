@@ -1,0 +1,6 @@
+/*.classpath
+/.gradle/2.4/taskArtifacts
+/*.project
+/.settings
+/bin/com/zhengs/demo/controller/*.class
+/bin
