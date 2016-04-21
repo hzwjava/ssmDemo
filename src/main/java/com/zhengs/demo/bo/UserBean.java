@@ -1,6 +1,8 @@
 package com.zhengs.demo.bo;
 
 public class UserBean {
+	private String id;
+	
 	private String name;
 	
 	private String age;
@@ -19,6 +21,14 @@ public class UserBean {
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

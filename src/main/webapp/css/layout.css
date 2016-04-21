@@ -1,0 +1,60 @@
+/*所有页面距离顶部的距离*/
+body{
+	padding-top:10px;
+}
+
+/*表格距离上面和下面的距离*/
+.table{
+	margin-top:10px;
+	margin-bottom:10px;	
+}
+
+/*翻页组件和表格的距离*/
+.pagination{
+	margin-top:0px;
+}
+
+/*布局细节调整*/
+.float_l{float:left;}
+.float_r{float:right;}
+.show{ display:block;}
+.hide{ display:none;}
+.mr10{margin-right:10px;}
+.mt10{margin-top:10px;}
+.ml10{margin-left:10px;}
+.mb10{margin-bottom:10px;}
+.scroll_x{overflow-y:hidden;overflow-x:scroll;}
+.scroll_y{overflow-x:hidden;overflow-y:scroll;}
+
+
+/*搜索*/
+.searchWrap{
+	width: 200px;
+	margin-left:30px;
+	min-height: 30px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	position: relative;
+	
+}
+
+.searchWrap .text{
+	height: 28px;
+	line-height: 28px;
+	float: left;
+	border:none;
+	margin-left: 2px;
+	text-indent: 4px;
+}
+
+.searchWrap button{
+	width: 26px;
+	height: 30px;
+	float: right;
+	border: none;
+	cursor: pointer;
+}
+
+.searchWrap .searchBtn{
+	background:url('../img/search1.png') no-repeat center center;
+}

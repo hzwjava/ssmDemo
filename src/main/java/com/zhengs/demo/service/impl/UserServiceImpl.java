@@ -17,6 +17,19 @@ public class UserServiceImpl implements  IUserService {
 	private IUserDao userDao;
 
 	@Override
+	public UserBean getUserById(String id) {
+		UserDTO dto = new UserDTO();
+		dto.setId(id);
+		
+		List<UserBean> list = userDao.getUserList(dto);
+		if(list != null && list.size() > 0){
+			return list.get(0);
+		}
+		
+		return null;
+	}
+	
+	@Override
 	public List<UserBean> getUserList(UserDTO dto) {
 		dto.setTotal(userDao.getUserListCount(dto));
 		
@@ -34,5 +47,4 @@ public class UserServiceImpl implements  IUserService {
 		userDao.delUser(list);
 		return true;
 	}
-	
 }

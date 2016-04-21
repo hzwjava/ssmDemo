@@ -6,6 +6,8 @@ import com.zhengs.demo.bo.UserBean;
 import com.zhengs.demo.bo.UserDTO;
 
 public interface IUserService {
+	public UserBean getUserById(String id);
+	
 	public List<UserBean> getUserList(UserDTO dto);
 	
 	public boolean saveUser(UserDTO dto);

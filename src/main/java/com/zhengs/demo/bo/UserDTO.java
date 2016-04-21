@@ -3,6 +3,9 @@ package com.zhengs.demo.bo;
 import com.zhengs.bo.CommonDTO;
 
 public class UserDTO extends CommonDTO{
+	
+	private String id;
+	
 	private String name;
 	
 	private String age;
@@ -21,5 +24,13 @@ public class UserDTO extends CommonDTO{
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
