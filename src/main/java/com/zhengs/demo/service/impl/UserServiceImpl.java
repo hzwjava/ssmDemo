@@ -18,6 +18,8 @@ public class UserServiceImpl implements  IUserService {
 
 	@Override
 	public List<UserBean> getUserList(UserDTO dto) {
+		dto.setTotal(userDao.getUserListCount(dto));
+		
 		return userDao.getUserList(dto);
 	}
 

@@ -42,4 +42,7 @@ dependencies {
 	compile 'org.springframework:spring-jdbc:4.1.8.RELEASE'
 	
 	compile 'mysql:mysql-connector-java:5.1.29'
+	
+	//json
+	compile 'com.alibaba:fastjson:1.2.4'
 }

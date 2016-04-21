@@ -4,11 +4,22 @@
 	<!-- 获取用户个数 -->
 	<select id="getUserListCount" resultType="java.lang.Integer" parameterType="com.zhengs.demo.bo.UserDTO">
 		select count(id) from user
+		<where>
+			<if test="name!=null and name!=''">
+				name like concat('%',#{name},'%')
+			</if>
+		</where>
 	</select>
 	
 	<!-- 获取用户列表 -->
 	<select id="getUserList" resultType="com.zhengs.demo.bo.UserBean" parameterType="com.zhengs.demo.bo.UserDTO">
 		select id,name,age from user
+		<where>
+			<if test="name!=null and name!=''">
+				name like concat('%',#{name},'%')
+			</if>
+		</where>
+		limit #{offset},#{limit}
 	</select>
 
 	<!-- 新增用户 -->

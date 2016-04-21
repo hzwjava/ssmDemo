@@ -1,6 +1,8 @@
 package com.zhengs.demo.bo;
 
-public class UserDTO {
+import com.zhengs.bo.CommonDTO;
+
+public class UserDTO extends CommonDTO{
 	private String name;
 	
 	private String age;
@@ -20,5 +22,4 @@ public class UserDTO {
 	public void setAge(String age) {
 		this.age = age;
 	}
-	
 }
