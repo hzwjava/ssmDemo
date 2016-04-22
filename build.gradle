@@ -43,6 +43,13 @@ dependencies {
 	
 	compile 'mysql:mysql-connector-java:5.1.29'
 	
+	//fastjson速度快,但是和jackson-databind存在类名冲突，暂时屏蔽掉
+	//compile 'com.alibaba:fastjson:1.2.8'
+	
 	//json
-	compile 'com.alibaba:fastjson:1.2.4'
+	compile 'net.sf.ezmorph:ezmorph:1.0.6'
+	compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+	
+	//ajax返回406 (Not Acceptable)
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
 }

@@ -23,7 +23,7 @@
 	</select>
 
 	<!-- 根据ID获取用户-->
-	<select id="getUserById" resultType="com.zhengs.demo.bo.UserBean" parameterType="com.zhengs.demo.bo.UserDTO">
+	<select id="getUserById" resultType="com.zhengs.demo.bo.UserBean" parameterType="String">
 		select id,name,age from user
 		<where>
 			<if test="id!=null and id!=''">
@@ -34,7 +34,7 @@
 	
 	<!-- 新增用户 -->
 	<insert id="insertUser" parameterType="com.zhengs.demo.bo.UserDTO" >
-		insert into user(id,name,age) values (#{id},#{name},#{age})
+		insert into user(name,age) values (#{name},#{age})
 	</insert>
 	
 	<!-- 修改用户 -->

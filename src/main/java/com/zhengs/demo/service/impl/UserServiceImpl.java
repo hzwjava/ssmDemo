@@ -18,15 +18,7 @@ public class UserServiceImpl implements  IUserService {
 
 	@Override
 	public UserBean getUserById(String id) {
-		UserDTO dto = new UserDTO();
-		dto.setId(id);
-		
-		List<UserBean> list = userDao.getUserList(dto);
-		if(list != null && list.size() > 0){
-			return list.get(0);
-		}
-		
-		return null;
+		return userDao.getUserById(id);
 	}
 	
 	@Override
@@ -38,7 +30,13 @@ public class UserServiceImpl implements  IUserService {
 
 	@Override
 	public boolean saveUser(UserDTO dto) {
-		userDao.insertUser(dto);
+		String id = dto.getId();
+		if(null != id && !"".equals(id)){
+			userDao.updateUser(dto);
+		}else{
+			userDao.insertUser(dto);
+		}
+		
 		return true;
 	}
 

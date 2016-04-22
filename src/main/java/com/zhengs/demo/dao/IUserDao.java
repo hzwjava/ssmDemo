@@ -12,7 +12,7 @@ public interface IUserDao {
 	
 	public List<UserBean> getUserList(UserDTO dto);
 	
-	public UserBean getUserById(@Param("id ") String id);
+	public UserBean getUserById(@Param("id") String id);
 	
 	public Integer insertUser(UserDTO dto);
 
