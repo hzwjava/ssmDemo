@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zhengs.aop.log.SystemControllerLog;
+import com.zhengs.bo.ActLogDTO.ActType;
 import com.zhengs.bo.ResultDTO;
 import com.zhengs.demo.bo.UserBean;
 import com.zhengs.demo.bo.UserDTO;
@@ -54,6 +54,7 @@ public class UserController {
 		return userServiceImpl.getUserById(dto.getId());
 	}
 
+	@SystemControllerLog(description = "新增用户")
 	@RequestMapping(value = "/saveUser", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody ResultDTO saveUser(UserDTO dto, HttpServletRequest request) {
 		ResultDTO result = new ResultDTO(false, "");
@@ -65,14 +66,20 @@ public class UserController {
 			result.setMsg("保存失败！");
 		}
 		
+		String id = dto.getId();
+		if(id != null && !"".equals(id)){
+			result.setAct_desc("修改用户");
+		}
+		result.setAct_object_name(dto.getName());
 		return result;
 	}
 
+	@SystemControllerLog(description = "删除用户")
 	@RequestMapping(value = "delUser", produces = { "application/json;charset=UTF-8" })
-	public @ResponseBody ResultDTO delUser(HttpServletResponse response, @RequestParam(required = false, value = "id") String id) {
+	public @ResponseBody ResultDTO delUser(UserDTO dto, HttpServletRequest request) {
 		ResultDTO result = new ResultDTO(false, "");
 		
-		String[] idArray = id.split(",");
+		String[] idArray = dto.getId().split(",");
 		List<String> list = Arrays.asList(idArray);
 		
 		try {
@@ -82,6 +89,7 @@ public class UserController {
 			result.setMsg("删除失败！");
 		}
 		
+		result.setAct_object_name(dto.getName());
 		return result;
 	}
 }

@@ -106,18 +106,24 @@
 				//删除
 	    		$('#delBtn').click(function(){
 	    			var obj = $('#table').bootstrapTable('getSelections');
+	    			var chk_id = "";
 	    			var chk_value = "";
 	    			for(var i=0;i<obj.length;i++){
+	    				if(chk_id != ""){
+	    					chk_id += ",";
+	    				}
+	    				chk_id+=obj[i].id;
+	    				
 	    				if(chk_value != ""){
 	    					chk_value += ",";
 	    				}
-	    				chk_value+=obj[i].id;
+	    				chk_value+=obj[i].name;
 	    			}
-	    			if(chk_value.length==0){
+	    			if(chk_id.length==0){
 	    				return;
 	    			}
 	    			
-   				    $.post("delUser.do", { id: chk_value }, function (data) {
+   				    $.post("delUser.do", { id: chk_id,name:chk_value }, function (data) {
    				        if (data.flag) {
 	   				        alert("删除成功");
 	   				        $('#table').bootstrapTable('refresh');
@@ -138,9 +144,13 @@
 							age : $("#age").val()
 						},
 						success : function(data) {
-							$('#myModal').modal('hide');
-							alert(data.flag);
-							$('#table').bootstrapTable('refresh');
+							if(data.flag){
+								$('#myModal').modal('hide');
+								alert("保存成功");
+								$('#table').bootstrapTable('refresh');
+							}else{
+								alert("保存失败");
+							}
 						}
 					});
 				});

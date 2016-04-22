@@ -1,6 +1,7 @@
 package com.zhengs.bo;
 
-public class ResultDTO {
+public class ResultDTO extends ActLogDTO{
+	
 	/**
 	 * 对错标记
 	 */

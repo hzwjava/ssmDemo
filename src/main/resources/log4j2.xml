@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="error">
-  <Appenders>
-    <Console name="console" target="SYSTEM_OUT">
-     	<PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
-    </Console>
-    
-    <RollingRandomAccessFile name="RollingRandomAccessFile" fileName="../logs/rrafa.log"
-                 filePattern="../logs/$${date:yyyy-MM}/rrafa-%d{MM-dd-yyyy}-%i.log.gz">
-      <PatternLayout>
-        <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
-      </PatternLayout>
-      <Policies>
-      	<OnStartupTriggeringPolicy />
-        <TimeBasedTriggeringPolicy />
-        <SizeBasedTriggeringPolicy size="250 MB"/>
-      </Policies>
-    </RollingRandomAccessFile>
-  
-  </Appenders>
-  <Loggers>
-    <AsyncLogger level="error" includeLocation="true" >
-    </AsyncLogger>
-    <AsyncRoot level="error" >
-    	<AppenderRef ref="RollingRandomAccessFile"/>
-    	<AppenderRef ref="console"/>
-    </AsyncRoot>
-  </Loggers>
+<Configuration status="trace" monitorInterval="3600">
+	<properties>
+		<property name="LOG_HOME">../logs</property>
+		<property name="FILE_NAME">mylog</property>
+	</properties>
+
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+
+		<RollingRandomAccessFile name="running-log" fileName="${LOG_HOME}/${FILE_NAME}.log" filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="%date{yyyy-MM-dd HH:mm:ss.SSS} %level [%thread][%file:%line] - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<AsyncLogger name="com.zhengs.aop.log.SystemLogAspect" level="trace" additivity="true">
+			<AppenderRef ref="running-log" />
+		</AsyncLogger>
+		<AsyncRoot level="trace">
+			<AppenderRef ref="Console" />
+		</AsyncRoot>
+	</Loggers>
 </Configuration>

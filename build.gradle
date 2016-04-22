@@ -52,4 +52,16 @@ dependencies {
 	
 	//ajax返回406 (Not Acceptable)
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
+	
+	//log4j2
+	//compile 'org.apache.logging.log4j.adapters:log4j-slf4j-impl:2.0-beta4'
+	compile 'org.apache.logging.log4j:log4j-api:2.5'
+	compile 'org.apache.logging.log4j:log4j-core:2.5'
+	compile 'org.apache.logging.log4j:log4j-web:2.5'
+	
+	//log4j异步写日志
+	compile 'com.lmax:disruptor:3.3.2'
+		
+	//aspect
+	compile 'org.aspectj:aspectjweaver:1.8.8'
 }
