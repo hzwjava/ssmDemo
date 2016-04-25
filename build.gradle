@@ -44,11 +44,8 @@ dependencies {
 	compile 'mysql:mysql-connector-java:5.1.29'
 	
 	//fastjson速度快,但是和jackson-databind存在类名冲突，暂时屏蔽掉
-	//compile 'com.alibaba:fastjson:1.2.8'
-	
-	//json
-	compile 'net.sf.ezmorph:ezmorph:1.0.6'
-	compile 'net.sf.json-lib:json-lib:2.4:jdk15'
+	//重新启用fastjson,解决办法：spring开启注解的时候包名为com改为com.zhengs
+	compile 'com.alibaba:fastjson:1.2.8'
 	
 	//ajax返回406 (Not Acceptable)
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.2'
@@ -59,8 +56,13 @@ dependencies {
 	compile 'org.apache.logging.log4j:log4j-core:2.5'
 	compile 'org.apache.logging.log4j:log4j-web:2.5'
 	
-	//log4j异步写日志
+	//log4j2异步写日志
 	compile 'com.lmax:disruptor:3.3.2'
+		
+	//log4j2日志写入mongdb
+	compile 'org.mongodb:mongo-java-driver:3.2.2'
+	compile 'org.log4mongo:log4mongo-java:0.7.4'
+	compile 'org.apache.logging.log4j:log4j-nosql:2.5'
 		
 	//aspect
 	compile 'org.aspectj:aspectjweaver:1.8.8'

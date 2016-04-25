@@ -6,6 +6,10 @@
 	</properties>
 
 	<Appenders>
+		<NoSql name="databaseAppender">    
+			<MongoDb databaseName="ssmDemo" collectionName="mylog" server="127.0.0.1" port="27017" />    
+		</NoSql>
+	    
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
@@ -22,6 +26,7 @@
 
 	<Loggers>
 		<AsyncLogger name="com.zhengs.aop.log.SystemLogAspect" level="trace" additivity="true">
+			<AppenderRef ref="databaseAppender" />
 			<AppenderRef ref="running-log" />
 		</AsyncLogger>
 		<AsyncRoot level="trace">

@@ -26,7 +26,7 @@
 	</bean>
 	
 	<!-- 自动扫描的包名 -->
-    <context:component-scan base-package="com"></context:component-scan>
+    <context:component-scan base-package="com.zhengs"></context:component-scan>
 
 	<!-- 支持aop -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />

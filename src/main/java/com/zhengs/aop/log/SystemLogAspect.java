@@ -1,6 +1,8 @@
 package com.zhengs.aop.log;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,6 +15,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSON;
 import com.zhengs.bo.ResultDTO;
 
 /**
@@ -44,25 +47,7 @@ public class SystemLogAspect {
 	 */
 	@Before("controllerAspect()")
 	public void doBefore(JoinPoint joinPoint) {
-//		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//		HttpSession session = request.getSession();
-		// 读取session中的用户
-		// User user = (User) session.getAttribute(WebConstants.CURRENT_USER);
-		// 请求的IP
-//		String ip = request.getRemoteAddr();
-		try {
-			String userName = "张三";
-			String method = joinPoint.getTarget().getClass().getName() + "."
-					+ joinPoint.getSignature().getName() + "()";
-			String desc = getControllerMethodDescription(joinPoint);
-			String success = "成功";
-
-			logger.error(method + ":" + userName + desc + success);
-		} catch (Exception e) {
-			// 记录本地异常日志
-			logger.error("==前置通知异常==");
-			logger.error("异常信息:{}", e.getMessage());
-		}
+		//待实现
 	}
 
 	/**
@@ -73,7 +58,7 @@ public class SystemLogAspect {
 	 */
 	@AfterThrowing(pointcut = "serviceAspect()", throwing = "e")
 	public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-		System.out.println("serviceAspect");
+		//待实现
 	}
 
 	/**
@@ -153,7 +138,15 @@ public class SystemLogAspect {
 		if(dto.getAct_desc() != null && !"".equals(dto.getAct_desc())){
 			desc = dto.getAct_desc();
 		}
+		
 		logger.error(userName + desc + dto.getAct_object_name() + success);
+		
+		Map<String, Object> operate = new HashMap<String, Object>();
+		operate.put("name", userName);
+		operate.put("content", desc);
+		operate.put("objectName", dto.getAct_object_name());
+		
+		logger.error(JSON.toJSONString(operate));
 		
 		return object;
 	}

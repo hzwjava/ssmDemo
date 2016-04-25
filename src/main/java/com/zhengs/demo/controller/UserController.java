@@ -5,16 +5,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.sf.json.JSONArray;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.zhengs.aop.log.SystemControllerLog;
-import com.zhengs.bo.ActLogDTO.ActType;
 import com.zhengs.bo.ResultDTO;
 import com.zhengs.demo.bo.UserBean;
 import com.zhengs.demo.bo.UserDTO;
@@ -36,7 +34,7 @@ public class UserController {
 	@RequestMapping(value = "/getUserList", produces = { "application/json;charset=UTF-8" })
 	public @ResponseBody String getUserList(HttpServletRequest request, UserDTO dto) {
 		List<UserBean> list = userServiceImpl.getUserList(dto);
-		String text = "{\"total\":" + dto.getTotal() + ",\"rows\":" + JSONArray.fromObject(list).toString() + "}";
+		String text = "{\"total\":" + dto.getTotal() + ",\"rows\":" + JSON.toJSONString(list)+ "}";
 		return text;
 	}
 	
