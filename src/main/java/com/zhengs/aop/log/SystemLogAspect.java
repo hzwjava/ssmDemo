@@ -1,8 +1,6 @@
 package com.zhengs.aop.log;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +13,6 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
 import com.zhengs.bo.ResultDTO;
 
 /**
@@ -141,12 +138,12 @@ public class SystemLogAspect {
 		
 		logger.error(userName + desc + dto.getAct_object_name() + success);
 		
-		Map<String, Object> operate = new HashMap<String, Object>();
-		operate.put("name", userName);
-		operate.put("content", desc);
-		operate.put("objectName", dto.getAct_object_name());
-		
-		logger.error(JSON.toJSONString(operate));
+//		Map<String, Object> operate = new HashMap<String, Object>();
+//		operate.put("name", userName);
+//		operate.put("content", desc);
+//		operate.put("objectName", dto.getAct_object_name());
+//		
+//		logger.error(JSON.toJSONString(operate));
 		
 		return object;
 	}
