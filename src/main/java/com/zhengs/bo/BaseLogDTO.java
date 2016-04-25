@@ -1,7 +1,7 @@
 package com.zhengs.bo;
 
 
-public class ActLogDTO{
+public class BaseLogDTO{
 	/**
 	 * 操作类型
 	 */

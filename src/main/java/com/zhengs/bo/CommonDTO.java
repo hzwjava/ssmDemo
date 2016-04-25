@@ -14,7 +14,7 @@ public class CommonDTO {
 	/**
 	 * 分页属性：总记录数
 	 */
-	private int total;
+	private long total;
 	
 	public int getLimit() {
 		return limit;
@@ -32,12 +32,11 @@ public class CommonDTO {
 		this.offset = offset;
 	}
 
-	public int getTotal() {
+	public long getTotal() {
 		return total;
 	}
 
-	public void setTotal(int total) {
+	public void setTotal(long total) {
 		this.total = total;
 	}
-	
 }

@@ -25,9 +25,9 @@ public class UserController {
 	@Autowired
 	private IUserService userServiceImpl;
 
-	@RequestMapping(value = "index")
+	@RequestMapping(value = "userList")
 	public ModelAndView index(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("userList");
 		return mv;
 	}
 
