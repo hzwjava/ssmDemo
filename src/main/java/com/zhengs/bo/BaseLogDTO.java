@@ -1,6 +1,10 @@
 package com.zhengs.bo;
 
-
+/**
+ * 日志对象dto
+ * @author zhengshan
+ * @Date 2016-5-17
+ */
 public class BaseLogDTO{
 	/**
 	 * 操作类型

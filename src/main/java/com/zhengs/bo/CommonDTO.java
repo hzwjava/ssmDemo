@@ -1,5 +1,10 @@
 package com.zhengs.bo;
 
+/**
+ * 公共对象dto
+ * @author zhengshan
+ * @Date 2016-5-17
+ */
 public class CommonDTO {
 	/**
 	 * 分页属性：每页显示多少条

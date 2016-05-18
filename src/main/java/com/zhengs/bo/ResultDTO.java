@@ -1,5 +1,10 @@
 package com.zhengs.bo;
 
+/**
+ * 返回结果集
+ * @author zhengshan
+ * @Date 2016-5-17
+ */
 public class ResultDTO extends BaseLogDTO{
 	
 	/**

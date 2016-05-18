@@ -10,9 +10,17 @@ import com.zhengs.demo.bo.UserDTO;
 import com.zhengs.demo.dao.IUserDao;
 import com.zhengs.demo.service.IUserService;
 
+/**
+ * 用户 service实现类
+ * @author zhengshan
+ * @Date 2016-5-18
+ */
 @Service
 public class UserServiceImpl implements  IUserService {
 	
+	/**
+	 * 用户dao接口
+	 */
 	@Autowired
 	private IUserDao userDao;
 

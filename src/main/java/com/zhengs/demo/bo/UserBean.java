@@ -1,5 +1,10 @@
 package com.zhengs.demo.bo;
 
+/**
+ * 用户bean
+ * @author zhengshan
+ * @Date 2016-5-17
+ */
 public class UserBean {
 	private String id;
 	

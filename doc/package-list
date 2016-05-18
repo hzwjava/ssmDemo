@@ -1,0 +1,13 @@
+com.zhengs.aop.log
+com.zhengs.bo
+com.zhengs.demo.bo
+com.zhengs.demo.controller
+com.zhengs.demo.dao
+com.zhengs.demo.service
+com.zhengs.demo.service.impl
+com.zhengs.log.bo
+com.zhengs.log.controller
+com.zhengs.log.service
+com.zhengs.log.service.impl
+com.zhengs.test
+com.zhengs.utils

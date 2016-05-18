@@ -23,8 +23,16 @@ import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 
+/**
+ * MongoDB工具类
+ * @author zhengshan
+ * @Date 2016-5-18
+ */
 public class MongoDBUtil {
 
+	/**
+	 * MongoDB工具类实例
+	 */
     private static MongoDBUtil mongoDBUtil = null;
 
     /**
@@ -35,10 +43,9 @@ public class MongoDBUtil {
     
     /**
      * 获取实例
-     *
-     * @param ip   127.0.0.1
-     * @param port 27107
-     * @return
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @return MongoDB工具类实例
      */
     public synchronized static MongoDBUtil getInstance() {
         if (mongoDBUtil == null) {
@@ -46,12 +53,9 @@ public class MongoDBUtil {
         }
         return mongoDBUtil;
     }
-    
+
     /**
-     * 构造方法
-     *
-     * @param ip   127.0.0.1
-     * @param port 27107
+     * MongoDB构造方法
      */
     private MongoDBUtil() {
         if (mongoClient == null) {
@@ -86,6 +90,15 @@ public class MongoDBUtil {
         }
     }
 
+    /**
+     * 判断指定数据是否存在
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param filterMap
+     *  @return
+     */
     public boolean isExits(String dbName, String collectionName, Map<String, Object> filterMap) {
         if (filterMap != null) {
             FindIterable<Document> docs = mongoClient.getDatabase(dbName).getCollection(collectionName).find(new Document(filterMap));
@@ -100,7 +113,15 @@ public class MongoDBUtil {
         return false;
     }
 
-
+    /**
+     * 插入数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param insertMap
+     *  @return
+     */
     public boolean insert(String dbName, String collectionName, Map<String, Object> insertMap) {
         if (insertMap != null) {
             mongoClient.getDatabase(dbName).getCollection(collectionName).insertOne(new Document(insertMap));
@@ -109,6 +130,15 @@ public class MongoDBUtil {
         return false;
     }
 
+    /**
+     * 根据ID删除数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param _id
+     *  @return
+     */
     public boolean deleteById(String dbName, String collectionName, String _id) {
         ObjectId objectId = new ObjectId(_id);
         Bson filter = Filters.eq("_id", objectId);
@@ -119,7 +149,15 @@ public class MongoDBUtil {
         return deletedCount > 0 ? true : false;
     }
 
-
+    /**
+     * 根据文档对象删除数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param map
+     *  @return
+     */
     public boolean delete(String dbName, String collectionName, Map<String, Object> map) {
         if (map != null) {
             DeleteResult result = mongoClient.getDatabase(dbName).getCollection(collectionName).deleteMany(new Document(map));
@@ -129,6 +167,16 @@ public class MongoDBUtil {
         return false;
     }
 
+    /**
+     * 根据文档对象更新数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param filterMap
+     *  @param updateMap
+     *  @return
+     */
     public boolean updateOne(String dbName, String collectionName, Map<String, Object> filterMap, Map<String, Object> updateMap) {
         if (filterMap != null && filterMap.size() > 0 && updateMap != null) {
             UpdateResult result = mongoClient.getDatabase(dbName).getCollection(collectionName).updateOne(new Document(filterMap), new Document("$set", new Document(updateMap)));
@@ -139,6 +187,16 @@ public class MongoDBUtil {
         return false;
     }
 
+    /**
+     * 根据ID更新数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param _id
+     *  @param updateDoc
+     *  @return
+     */
     public boolean updateById(String dbName, String collectionName, String _id, Document updateDoc) {
         ObjectId objectId = new ObjectId(_id);
         Bson filter = Filters.eq("_id", objectId);
@@ -149,6 +207,14 @@ public class MongoDBUtil {
         return modifiedCount > 0 ? true : false;
     }
 
+    /**
+     * 查询所有数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @return
+     */
     public List<Document> find(String dbName, String collectionName) {
         final List<Document> resultList = new ArrayList<Document>();
         FindIterable<Document> docs = mongoClient.getDatabase(dbName).getCollection(collectionName).find();
@@ -161,6 +227,15 @@ public class MongoDBUtil {
         return resultList;
     }
     
+    /**
+     * 根据过滤条件查询数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param filter
+     *  @return
+     */
     public List<Document> find(String dbName, String collectionName, Bson filter) {
         final List<Document> resultList = new ArrayList<Document>();
         if (filter != null) {
@@ -175,6 +250,15 @@ public class MongoDBUtil {
         return resultList;
     }
 
+    /**
+     * 根据ID查询数据
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param _id
+     *  @return
+     */
     public Document findById(String dbName, String collectionName, String _id) {
         ObjectId objectId = new ObjectId(_id);
 
@@ -206,29 +290,60 @@ public class MongoDBUtil {
         return resultList;
     }
 
+    /**
+     * 获取MongoCollection
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @return
+     */
     public MongoCollection<?> getCollection(String dbName, String collectionName) {
         return mongoClient.getDatabase(dbName).getCollection(collectionName);
     }
 
-
+    /**
+     * 获取MongoDatabase
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @return
+     */
     public MongoDatabase getDatabase(String dbName) {
         return mongoClient.getDatabase(dbName);
     }
 
+    /**
+     * 获取指定collection的数据量大小
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @return
+     */
     public long getCount(String dbName, String collectionName) {
         return getDatabase(dbName).getCollection(collectionName).count();
     }
 
+    /**
+     * 根据过滤条件获取指定collection的数据量大小
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName
+     *  @param collectionName
+     *  @param filter
+     *  @return
+     */
     public long getCount(String dbName, String collectionName, Bson filter) {
         return getDatabase(dbName).getCollection(collectionName).count(filter);
     }
 
-    
     /**
      * 查询dbName下的所有表名
-     *
-     * @param dbName
-     * @return
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName 数据库名称
+     *  @return 表集合
      */
     public List<String> getAllCollections(String dbName) {
         MongoIterable<String> cols = getDatabase(dbName).listCollectionNames();
@@ -241,8 +356,9 @@ public class MongoDBUtil {
 
     /**
      * 获取所有数据库名称列表
-     *
-     * @return
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @return 数据库名称集合
      */
     public MongoIterable<String> getAllDatabaseName() {
         MongoIterable<String> s = mongoClient.listDatabaseNames();
@@ -251,8 +367,9 @@ public class MongoDBUtil {
 
     /**
      * 删除一个数据库
-     *
-     * @param dbName
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName 数据库名称
      */
     public void dropDatabase(String dbName) {
         getDatabase(dbName).drop();
@@ -260,14 +377,20 @@ public class MongoDBUtil {
 
     /**
      * 删除collection
-     *
-     * @param dbName
-     * @param collectionName
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     *  @param dbName 数据库名称
+     *  @param collectionName 集合名称
      */
     public void dropCollection(String dbName, String collectionName) {
         getDatabase(dbName).getCollection(collectionName).drop();
     }
 
+    /**
+     * 关闭数据库连接池
+     *	@author zhengshan
+     *	@Date 2016-5-18
+     */
     public void close() {
         if (mongoClient != null) {
             mongoClient.close();

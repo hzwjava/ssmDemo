@@ -8,10 +8,7 @@ sourceCompatibility='1.7' //兼容版本
 targetCompatibility = '1.7' //使用的版本
  
 repositories {
-    maven {
-		url "http://10.0.2.215:8081/nexus/content/groups/public"
-	}
-	//mavenCentral()
+	mavenCentral()
 }
 
 dependencies {

@@ -2,6 +2,11 @@ package com.zhengs.demo.bo;
 
 import com.zhengs.bo.CommonDTO;
 
+/**
+ * 用户dto
+ * @author zhengshan
+ * @Date 2016-5-17
+ */
 public class UserDTO extends CommonDTO{
 	
 	private String id;
