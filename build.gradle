@@ -15,12 +15,12 @@ dependencies {
 	//spring+spring mvc
 	compile 'org.springframework:spring-webmvc:4.1.8.RELEASE'
 
-    //servlet
-    compile 'javax.servlet:servlet-api:2.5'
-    
 	//视图显示
     compile 'org.springframework:spring-context-support:4.1.8.RELEASE'
-        
+    
+	//servlet
+    compile 'javax.servlet:servlet-api:2.5'
+     
 	compile ('org.apache.velocity:velocity-tools:2.0'){
 		exclude group: 'org.apache.struts'
 	}
@@ -63,4 +63,8 @@ dependencies {
 		
 	//aspect
 	compile 'org.aspectj:aspectjweaver:1.8.8'
+	
+	//reids
+	compile 'org.springframework.data:spring-data-redis:1.6.4.RELEASE'
+	compile 'redis.clients:jedis:2.8.0'
 }

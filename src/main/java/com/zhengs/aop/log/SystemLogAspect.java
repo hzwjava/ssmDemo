@@ -11,9 +11,11 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.zhengs.bo.ResultDTO;
+import com.zhengs.sysConfig.service.ISysConfService;
 
 /**
  * 切点类
@@ -29,6 +31,12 @@ public class SystemLogAspect {
 	 */
 	private static final Logger logger = LogManager.getLogger();
 
+	/**
+	 * 系统配置service
+	 */
+	@Autowired
+	private ISysConfService sysConfServiceImpl;
+	
 	/**
 	 * service层切点
 	 *	@author zhengshan
@@ -162,8 +170,12 @@ public class SystemLogAspect {
 			desc = dto.getAct_desc();
 		}
 		
+		//操作用户
+		String userName = sysConfServiceImpl.getSysConfig("username");
+		
+		
 		//记录操作日志
-		logger.error(desc + dto.getAct_object_name() + success);
+		logger.debug(userName+"-"+desc + dto.getAct_object_name() + success);
 		
 		return object;
 	}

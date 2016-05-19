@@ -16,11 +16,11 @@
  	  http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
       http://www.springframework.org/schema/mvc
       http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
-      
+	<!-- 加载配置文件 -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:config/jdbc.properties</value>
+				<value>classpath:config/*.properties</value>
 			</list>
 		</property>
 	</bean>
@@ -32,9 +32,17 @@
 	<aop:aspectj-autoproxy proxy-target-class="true" />
     <aop:config /> 
     
-    <!-- 默认的注解映射的支持 -->
-    <!-- <mvc:annotation-driven />-->
-    
+    <!-- 需要加入缓存的类或方法 -->
+	<bean id="methodCachePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor" > 
+		<property name="advice" ref="methodCacheInterceptor" /> 
+		<property name="patterns" > 
+			<list> 
+				<!-- 确定正则表达式列表 -->
+		       	<value>com\.zhengs\.sysConfig\.service\.impl\...*ServiceImpl.*</value >
+			</list> 
+		</property> 
+	</bean>
+
 	<!-- ajax返回406 (Not Acceptable)-->
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
 	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -42,7 +50,7 @@
 		<property name="favorPathExtension" value="false" />
 	</bean>
 
-
+	<!-- 页面的的路径 -->
 	<bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer" 
    		p:resourceLoaderPath="WEB-INF/views/">
     	<property name="velocityProperties">

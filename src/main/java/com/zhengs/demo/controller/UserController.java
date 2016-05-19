@@ -17,6 +17,7 @@ import com.zhengs.bo.ResultDTO;
 import com.zhengs.demo.bo.UserBean;
 import com.zhengs.demo.bo.UserDTO;
 import com.zhengs.demo.service.IUserService;
+import com.zhengs.sysConfig.service.ISysConfService;
 
 /**
  * 用户控制器
@@ -32,6 +33,9 @@ public class UserController {
 	 */
 	@Autowired
 	private IUserService userServiceImpl;
+	
+	@Autowired
+	private ISysConfService sysConfServiceImpl;
 
 	/**
 	 * 用户首页
@@ -42,6 +46,8 @@ public class UserController {
 	 */
 	@RequestMapping(value = "userList")
 	public ModelAndView index(HttpServletRequest request) {
+		System.out.println(sysConfServiceImpl.getSysConfig("test"));
+		
 		ModelAndView mv = new ModelAndView("userList");
 		return mv;
 	}

@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.mongodb.client.model.Filters;
 import com.zhengs.log.bo.LogDTO;
 import com.zhengs.log.service.ILogService;
-import com.zhengs.utils.MongoDBUtil;
 import com.zhengs.utils.PropertiesUtil;
+import com.zhengs.utils.mongodb.MongoDBUtil;
 
 @Service
 public class LogServiceImpl implements  ILogService {

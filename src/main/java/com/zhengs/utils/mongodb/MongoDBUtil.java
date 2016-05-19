@@ -1,4 +1,4 @@
-package com.zhengs.utils;
+package com.zhengs.utils.mongodb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,7 @@ import com.mongodb.client.MongoIterable;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
+import com.zhengs.utils.PropertiesUtil;
 
 /**
  * MongoDB工具类
